@@ -26,7 +26,10 @@ export default function GameBoard({
       const updatedGameBoard = prevGameBoard.map((innerArray) =>
         innerArray.map((cellObj) => ({ ...cellObj }))
       );
-      updatedGameBoard[row][cell].value = activePlayerSymbol;
+      if (!updatedGameBoard[row][cell].value){
+        updatedGameBoard[row][cell].value = activePlayerSymbol;
+      }
+      
       return updatedGameBoard;
     });
 
