@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 type PlayerProps = {
   name: string;
   isX: boolean;
-  isActivePlayer: string;
+  isActivePlayer: boolean;
 };
 
 export default function Player({ name, isX, isActivePlayer }: PlayerProps) {

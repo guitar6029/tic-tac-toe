@@ -14,7 +14,7 @@ export default function App() {
   const [activePlayer, setActivePlayer] = useState('X');
   const [turns, setTurns] = useState([]);
 
-  const handleCellClick = (row, cell) => {
+  const handleCellClick = (row:number, cell:number) => {
     if (!gameBoard[row][cell].value) {
       const updatedBoard = gameBoard.map((innerArray, rowIndex) =>
         innerArray.map((cellObj, cellIndex) =>
