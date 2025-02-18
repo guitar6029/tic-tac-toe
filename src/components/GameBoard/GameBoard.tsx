@@ -1,41 +1,13 @@
-import { useState } from 'react';
-
 type Board = {
   value: null | string;
 };
 
-const initialGameBoard: Board[][] = [
-  [{ value: null }, { value: null }, { value: null }],
-  [{ value: null }, { value: null }, { value: null }],
-  [{ value: null }, { value: null }, { value: null }],
-];
-
 type GameBoardProps = {
-  activePlayerSymbol: string;
-  onSelectedCell: () => void;
+  gameBoard: Board[][];
+  onCellClick: (row: number, cell: number) => void;
 };
 
-export default function GameBoard({
-  activePlayerSymbol,
-  onSelectedCell,
-}: GameBoardProps) {
-  const [gameBoard, updateGameBoard] = useState(initialGameBoard);
-
-  const handleClickEvent = (row: number, cell: number) => {
-    updateGameBoard((prevGameBoard) => {
-      const updatedGameBoard = prevGameBoard.map((innerArray) =>
-        innerArray.map((cellObj) => ({ ...cellObj }))
-      );
-      if (!updatedGameBoard[row][cell].value){
-        updatedGameBoard[row][cell].value = activePlayerSymbol;
-      }
-      
-      return updatedGameBoard;
-    });
-
-    onSelectedCell();
-  };
-
+export default function GameBoard({ gameBoard, onCellClick }: GameBoardProps) {
   return (
     <div className="gameboard-container">
       {gameBoard.map((row, rowIndex: number) => (
@@ -44,7 +16,7 @@ export default function GameBoard({
             <div
               key={cellIndex}
               className="gameboard-cell"
-              onClick={() => handleClickEvent(rowIndex, cellIndex)}
+              onClick={() => onCellClick(rowIndex, cellIndex)}
             >
               {cell.value}
             </div>
